@@ -20,9 +20,19 @@ function exec() {
     if (chrome.runtime.lastError) {
       console.error(chrome.runtime.lastError);
     }
-    console.log('VIDEO URLS!', videoUrls);
-    if (videoUrls && videoUrls[0]) {
-      chrome.tabs.create({ url: videoUrls[0] });
+
+    if (videoUrls) {
+      videoUrls = videoUrls.filter((item, pos, self) => {
+        return self.indexOf(item) === pos;
+      });
+
+      console.log('VIDEO URLS FILTERED!', videoUrls);
+
+      videoUrls.forEach((videoUrl) => {
+        if (videoUrl !== '') {
+          chrome.tabs.create({ url: videoUrl });
+        }
+      });
     }
   });
 }
