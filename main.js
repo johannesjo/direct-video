@@ -26,8 +26,6 @@ function exec() {
         return self.indexOf(item) === pos;
       });
 
-      console.log('VIDEO URLS FILTERED!', videoUrls);
-
       videoUrls.forEach((videoUrl) => {
         if (videoUrl !== '') {
           chrome.tabs.create({ url: videoUrl });
