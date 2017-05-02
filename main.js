@@ -1,8 +1,9 @@
 chrome.browserAction.onClicked.addListener((tab) => {
+  videoUrls = [];
   exec(tab);
 });
 
-let videoUrls = [];
+let videoUrls;
 chrome.runtime.onMessage.addListener(function (request) {
   if (request.action === 'getVideoUrls') {
     videoUrls = videoUrls.concat(request.source);
